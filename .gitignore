@@ -1,0 +1,4 @@
+*.o
+a.out
+libft/
+push_swap_tutorial/
