@@ -68,11 +68,8 @@ int	if_numb(char *s)
 	i = 0;
 	while (s[i])
 	{
-		printf("s[i]:%c\n", s[i]);
-		printf("len :%zu\n", ft_strlen(&s[i]));
-		if (s[1] != '-' && ft_isdigit(s[1]) == 0)
+		if (s[0] != '-' && ft_isdigit(s[0]) == 0)
 		{
-			printf("here?");
 			return (0);
 		}
 		if (i > 0 && ft_isdigit(s[i]) == 0)
@@ -91,12 +88,8 @@ int	check_error(int argc, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		printf("arr: %s\n", argv[i]);
 		if (if_numb(argv[i]) == 0)
-		{
-			printf("if_num: %d\n", if_numb(argv[i]));
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -105,12 +98,19 @@ int	check_error(int argc, char **argv)
 int	if_repetive_num(int *arry)
 {
 	int i;
+	int	j;
 
-	i = 0;
-	while (arry[i + 1])
+	i = 1;
+	while (arry[i])
 	{
-		if (arry[i] == arry[i+1])
-			return (1);
+		j = i;
+		while (arry[j + 1])
+		{
+			printf("arry %d:%d\n", arry[i], arry[j+1]);
+			if (arry[i] == arry[j+1])
+				return (1);
+			j++;
+		}
 		i++; 
 	}
 	return 0;
@@ -121,31 +121,30 @@ int main(int argc, char **argv)
 	int	*arry;
 	int	i;
 
-	//printf("if not :%d\n",ft_isdigit('8'));
 	if (check_error(argc, argv) == 1)
 	{
 		write(1, "Error!\n", 7);
 		return (1);
 	}
-	// arry = malloc((argc - 1) * sizeof(int));
-	// if (!arry)
-	// 	return (1);
-	// i = 1;
-	// while (i < argc)
-	// {
-	// 	arry[i] = ft_atoi(argv[i]);
-	// 	i++;
-	// }
-	// if ((if_repetive_num(arry) == 1))
-	// {
-	// 	printf("repeat\n");
-	// 	return (1);
-	// }
-	// if (argc < 6)
-	// {
+	arry = malloc((argc - 1) * sizeof(int));
+	if (!arry)
+		return (1);
+	i = 1;
+	while (i < argc)
+	{
+		arry[i] = ft_atoi(argv[i]);
+		i++;
+	}
+	if ((if_repetive_num(arry) == 1))
+	{
+		printf("repeat\n");
+		return (1);
+	}
+	if (argc < 6)
+	{
 
-	// }
- 
+	}
+	printf("passs\n");
 
 	return (0);
 }
