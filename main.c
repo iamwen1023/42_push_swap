@@ -69,9 +69,7 @@ int	if_numb(char *s)
 	while (s[i])
 	{
 		if (s[0] != '-' && ft_isdigit(s[0]) == 0)
-		{
 			return (0);
-		}
 		if (i > 0 && ft_isdigit(s[i]) == 0)
 			return (0);
 		i++;
@@ -95,19 +93,18 @@ int	check_error(int argc, char **argv)
 	return (0);
 }
 
-int	if_repetive_num(int *arry)
+int	if_repetive_num(int total, int *arry)
 {
 	int i;
 	int	j;
 
 	i = 1;
-	while (arry[i])
+	while (i <= total)
 	{
-		j = i;
-		while (arry[j + 1])
+		j = i + 1;
+		while (j <= total - 1)
 		{
-			printf("arry %d:%d\n", arry[i], arry[j+1]);
-			if (arry[i] == arry[j+1])
+			if (arry[i] == arry[j])
 				return (1);
 			j++;
 		}
@@ -135,7 +132,7 @@ int main(int argc, char **argv)
 		arry[i] = ft_atoi(argv[i]);
 		i++;
 	}
-	if ((if_repetive_num(arry) == 1))
+	if ((if_repetive_num(argc, arry) == 1))
 	{
 		printf("repeat\n");
 		return (1);
