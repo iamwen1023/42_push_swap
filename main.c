@@ -1,65 +1,13 @@
-//#include "../libft/libft.h"
+#include "libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	length;
-
-	length = 0;
-	while (*s)
-	{
-		++length;
-		s++;
-	}
-	return (length);
-}
-
-int	if_space(char c)
-{
-	if (c == '\t' || c == '\n' || c == '\v')
-		return (1);
-	if (c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(const char *str)
-{
-	int		sign;
-	long	result;
-
-	while (if_space(*str))
-		str++;
-	sign = 1;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = sign * -1;
-		str++;
-	}
-	if (*str == '-' || *str == '+')
-		return (0);
-	result = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + *str - '0';
-		str++;
-		if (sign < 0 && result > 2147483648)
-			return (0);
-		if (sign > 0 && result > 2147483647)
-			return (-1);
-	}
-	return (((int)result) * sign);
-}
-
-int	ft_isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (1);
-	return (0);
-}
+// typedef struct s_list 
+// {
+// 	int num;
+// 	struct s_list *next;
+// } t_list;
 
 int	if_numb(char *s)
 {
@@ -115,36 +63,69 @@ int	if_repetive_num(int *arry)
 	}
 	return 0;
 }
+int quicksort(t_list *arr, int numb)
+{
+	int step;
+	int	i;
+	t_list arr2;
+
+	step = 0;
+	i = 1;
+	while(i < numb)
+	{
+		if(arr[numb - 1]  < arr[i])
+			{
+				printf"pb\n");
+			}
+	}
+
+	return 0;
+}
 
 int main(int argc, char **argv)
 {
 	int	*arry;
 	int	i;
+	t_list *arr;
+	t_list *temp;
 
 	if (check_error(argc, argv) == 1)
 	{
 		write(1, "Error!\n", 7);
 		return (1);
 	}
-	arry = malloc((argc - 1) * sizeof(int));
-	if (!arry)
-		return (1);
-	i = 1;
+	// arry = malloc((argc - 1) * sizeof(int));
+	// if (!arry)
+	// 	return (1);
+	// i = 1;
+	// while (i < argc)
+	// {
+	// 	arry[i] = ft_atoi(argv[i]);
+	// 	i++;
+	// }
+	// if ((if_repetive_num(arry) == 1))
+	// {
+	// 	printf("repeat\n");
+	// 	return (1);
+	// }
+	arr = ft_lstnew(ft_atoi(argv[1]));
+	i = 2;
 	while (i < argc)
 	{
-		arry[i] = ft_atoi(argv[i]);
+		temp = ft_lstnew(ft_atoi(argv[i]));
+		ft_lstadd_back(&arr , temp);
 		i++;
 	}
-	if ((if_repetive_num(arry) == 1))
+	i = 1;
+	temp = arr;
+	while (i < argc)
 	{
-		printf("repeat\n");
-		return (1);
-	}
-	if (argc < 6)
-	{
-
+		printf("num : %d\n", temp->content);
+		temp = temp->next;
+		i++;
 	}
 	printf("passs\n");
+	quicksort(arr, argc-1);
 
 	return (0);
 }
