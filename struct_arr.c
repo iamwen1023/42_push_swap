@@ -4,12 +4,12 @@
 typedef struct s_list
 {
 	int			content;
-	struct s_list	*last;
+	struct s_list	*prev;
 	struct s_list	*next;
 } t_list;
 
 
-t_list	*ft_lstnew(int	content)
+t_list	*ft_lstnew_Doubly(int content)
 {
 	t_list		*re;
 
@@ -18,17 +18,20 @@ t_list	*ft_lstnew(int	content)
 		return (0);
 	re->content = content;
 	re->next = 0;
+	re->prev = 0;
 	return (re);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front_Doubly(t_list **lst, t_list *new)
 {
 	if (new)
 		new->next = *lst;
+	if	(*lst)
+		(*lst)->prev = new;
 	*lst = new;
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back_Doubly(t_list **lst, t_list *new)
 {
 	t_list	*current;
 
@@ -43,78 +46,100 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		current = current->next;
 	}
 	current->next = new;
+	new->prev = current;
 }
 
-void	ft_lstdelone(t_list *lst)
+void	ft_lstdel_Doubly(t_list **lst, t_list *del)
 {
-	t_list *temp;
 
-	if (!lst)
+	if (!(*lst) || !del)
 		return ;
-	if (lst->last)
-	{
-		temp = lst->last;
-		temp->next = lst->next;
+	
+	if (*lst == del)
+		*lst = del->next;
+	if (del->next != 0)
+		del->next->prev = del->prev;
+	if (del->prev != 0)
+		del->prev->next = del->next;
+	free(del);
+}
+
+void print_out(t_list *arr_t)
+{
+	printf("arr :");
+	while (arr_t->next)
+	{	
+		
+		printf("%d",arr_t->content);
+		arr_t = arr_t->next;
 	}
-	else
-		lst = lst->next;
-	free(lst);
-}
-
-int remove_by_index(t_list **head, int n) {
-    int i = 0;
-    int retval = -1;
-    t_list *current = *head;
-    t_list *temp_node = NULL;
-
-    if (n == 0) {
-        temp_node = (*head)->next;
-    	retval = (*head)->content;
-    	free(*head);
-    	*head = temp_node;
-		return retval;
-    }
-
-    for (i = 0; i < n-1; i++) {
-        if (current->next == NULL) {
-            return -1;
-        }
-        current = current->next;
-    }
-
-    temp_node = current->next;
-    retval = temp_node->content;
-    current->next = temp_node->next;
-    free(temp_node);
-
-    return retval;
+	printf("%d",arr_t->content);
+	printf("arr rev:");
+	while (arr_t->prev)
+	{	
+		printf("%d",arr_t->content);
+		arr_t = arr_t->prev;
+	}
+	printf("final:%d",arr_t->content);
+	printf("\n");
 
 }
 
-void	ft_lstswap(t_list **a , t_list **b)
+void operation_swap(t_list **lst)
 {
 	t_list *temp;
 
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	if (!(*lst))
+		return;
+	temp = ft_lstnew_Doubly((*lst)->content);
+	temp->next = (*lst)->next;
+	temp->prev = (*lst)->prev;
+	(*lst)->content = (*lst)->next->content;
+	(*lst)->next = (*lst)->next;
+	(*lst)->next->content = temp->content;
+}
+void operation_push(t_list **lst_a, t_list **lst_b)
+{
+	t_list *temp;
+
+	if (!(*lst_b))
+		return;
+	temp = ft_lstnew_Doubly((*lst_b)->content);
+	temp->next =(*lst_b)->next;
+	temp->prev = (*lst_b)->prev;
+	ft_lstadd_front_Doubly(lst_a, temp);
+	free(temp);
+	temp = (*lst_b)->next->prev;
+	ft_lstdel_Doubly(lst_b, temp);
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 	t_list *arr;
-	t_list *arr2;
-	t_list *arr3;
-	int a = 8;
-	int b = 10;
-	int c = 12;
-	arr = ft_lstnew(a);
-	arr2 = ft_lstnew(b);
-	arr3 = ft_lstnew(c);
-	ft_lstadd_back(&arr, arr2);
-	ft_lstadd_back(&arr, arr3);
-	ft_lstdelone(arr2);
-	printf("n:%d\n",arr->content);
-	
+	t_list *arr_1;
+	t_list *arr_2;
+	int i = 0;
+
+	while (i < 5)
+	{
+		arr = ft_lstnew_Doubly(i);
+		ft_lstadd_back_Doubly(&arr_1 , arr);
+		i++;
+	}
+	i = 100;
+	while (i < 105)
+	{
+		arr = ft_lstnew_Doubly(i);
+		ft_lstadd_back_Doubly(&arr_2 , arr);
+		i++;
+	}
+	print_out(arr_1);
+	print_out(arr_2);
+	//operation_push(&arr_1, &arr_2);
+	arr = arr_2->next->next->next;
+	printf("delere : arr:%d\n", arr->content);
+	ft_lstdel_Doubly(&arr_2, arr);
+	print_out(arr_1);
+	print_out(arr_2);
 	return 0;
 }
