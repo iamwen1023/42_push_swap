@@ -48,22 +48,6 @@ void	ft_lstadd_back_Doubly(t_list **lst, t_list *new)
 	current->next = new;
 	new->prev = current;
 }
-
-void	ft_lstdel_Doubly(t_list **lst, t_list *del)
-{
-
-	if (!(*lst) || !del)
-		return ;
-	
-	if (*lst == del)
-		*lst = del->next;
-	if (del->next != 0)
-		del->next->prev = del->prev;
-	if (del->prev != 0)
-		del->prev->next = del->next;
-	free(del);
-}
-
 void print_out(t_list *arr_t)
 {
 	printf("arr :");
@@ -83,6 +67,29 @@ void print_out(t_list *arr_t)
 	printf("final:%d",arr_t->content);
 	printf("\n");
 
+}
+
+void	ft_lstdel_Doubly(t_list **lst, t_list *del)
+{
+	if (!(*lst) || !del)
+		return ;
+	if (*lst == del)
+		*lst = del->next;
+	if (del->prev == 0 || del->next == 0)
+	{
+		if (del->prev == 0)
+			(*lst)->prev = 0;
+		if (del->next == 0)
+			(*lst)->next = 0;
+	}
+	else 
+	{
+		if (del->next != 0)
+			del->next->prev = del->prev;
+		if (del->prev != 0)
+			del->prev->next = del->next;
+	}
+	//free(del);
 }
 
 void operation_swap(t_list **lst)
@@ -110,6 +117,8 @@ void operation_push(t_list **lst_a, t_list **lst_b)
 	ft_lstadd_front_Doubly(lst_a, temp);
 	free(temp);
 	temp = (*lst_b)->next->prev;
+	printf("temp:%d\n", (*lst_b)->next->prev->content);
+	temp = *lst_b;
 	ft_lstdel_Doubly(lst_b, temp);
 }
 
@@ -135,10 +144,10 @@ int main(int argc, char *argv[])
 	}
 	print_out(arr_1);
 	print_out(arr_2);
-	//operation_push(&arr_1, &arr_2);
-	arr = arr_2->next->next->next;
-	printf("delere : arr:%d\n", arr->content);
-	ft_lstdel_Doubly(&arr_2, arr);
+	operation_push(&arr_1, &arr_2);
+	// arr = arr_2;
+	// printf("delere : arr:%d\n", arr->content);
+	// ft_lstdel_Doubly(&arr_2, arr);
 	print_out(arr_1);
 	print_out(arr_2);
 	return 0;
