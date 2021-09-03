@@ -1,19 +1,20 @@
+#include "libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct s_list
+typedef struct s_listd
 {
 	int			content;
-	struct s_list	*prev;
-	struct s_list	*next;
-} t_list;
+	struct s_listd	*prev;
+	struct s_listd	*next;
+} t_listd;
 
 
-t_list	*ft_lstnew_Doubly(int content)
+t_listd	*ft_lstnew_Doubly(int content)
 {
-	t_list		*re;
+	t_listd		*re;
 
-	re = (t_list *)malloc(sizeof(t_list));
+	re = (t_listd *)malloc(sizeof(t_listd));
 	if (!re)
 		return (0);
 	re->content = content;
@@ -22,7 +23,7 @@ t_list	*ft_lstnew_Doubly(int content)
 	return (re);
 }
 
-void	ft_lstadd_front_Doubly(t_list **lst, t_list *new)
+void	ft_lstadd_front_Doubly(t_listd **lst, t_listd *new)
 {
 	if (new)
 		new->next = *lst;
@@ -31,9 +32,9 @@ void	ft_lstadd_front_Doubly(t_list **lst, t_list *new)
 	*lst = new;
 }
 
-void	ft_lstadd_back_Doubly(t_list **lst, t_list *new)
+void	ft_lstadd_back_Doubly(t_listd **lst, t_listd *new)
 {
-	t_list	*current;
+	t_listd	*current;
 
 	if (!(*lst))
 	{
@@ -48,7 +49,7 @@ void	ft_lstadd_back_Doubly(t_list **lst, t_list *new)
 	current->next = new;
 	new->prev = current;
 }
-void print_out(t_list *arr_t)
+void print_out(t_listd *arr_t)
 {
 	printf("arr :");
 	while (arr_t->next)
@@ -64,12 +65,11 @@ void print_out(t_list *arr_t)
 		printf("%d",arr_t->content);
 		arr_t = arr_t->prev;
 	}
-	printf("final:%d",arr_t->content);
+	printf("%d",arr_t->content);
 	printf("\n");
-
 }
 
-void	ft_lstdel_Doubly(t_list **lst, t_list *del)
+void	ft_lstdel_Doubly(t_listd **lst, t_listd *del)
 {
 	if (!(*lst) || !del)
 		return ;
@@ -89,12 +89,12 @@ void	ft_lstdel_Doubly(t_list **lst, t_list *del)
 		if (del->prev != 0)
 			del->prev->next = del->next;
 	}
-	//free(del);
+	free(del);
 }
 
-void operation_swap(t_list **lst)
+void operation_swap(t_listd **lst)
 {
-	t_list *temp;
+	t_listd *temp;
 
 	if (!(*lst))
 		return;
@@ -104,10 +104,11 @@ void operation_swap(t_list **lst)
 	(*lst)->content = (*lst)->next->content;
 	(*lst)->next = (*lst)->next;
 	(*lst)->next->content = temp->content;
+	free(temp);
 }
-void operation_push(t_list **lst_a, t_list **lst_b)
+void operation_push(t_listd **lst_a, t_listd **lst_b)
 {
-	t_list *temp;
+	t_listd *temp;
 
 	if (!(*lst_b))
 		return;
@@ -115,40 +116,93 @@ void operation_push(t_list **lst_a, t_list **lst_b)
 	temp->next =(*lst_b)->next;
 	temp->prev = (*lst_b)->prev;
 	ft_lstadd_front_Doubly(lst_a, temp);
-	free(temp);
-	temp = (*lst_b)->next->prev;
-	printf("temp:%d\n", (*lst_b)->next->prev->content);
-	temp = *lst_b;
-	ft_lstdel_Doubly(lst_b, temp);
+	ft_lstdel_Doubly(lst_b, *lst_b);
+}
+void operation_rotate(t_listd **lst)
+{
+	t_listd *temp;
+	t_listd *key;
+
+	key = (*lst);
+	temp = (*lst);
+	(*lst) = (*lst)->next;
+	while(temp->next != 0)
+		temp = temp->next;
+	temp->next = key;
+	key->prev = temp;
+	key->next = 0;
+	(*lst)->prev = 0;
 }
 
-int main(int argc, char *argv[])
+void operation_r_rotate(t_listd **lst)
 {
-	t_list *arr;
-	t_list *arr_1;
-	t_list *arr_2;
-	int i = 0;
+	t_listd *temp;
+	t_listd *key;
 
-	while (i < 5)
+	temp = (*lst);
+	key = temp;
+	while(key->next != 0)
+		key = key->next; 
+	key->prev->next = 0;
+ 	temp->prev = key;
+	key->next = temp;
+	key->prev = 0;
+	(*lst) = key;
+}
+
+void parse_lst(int argc, char **argv, t_listd **arr, t_listd **temp)
+{
+	// t_listd 	*arr;
+	// t_listd		*temp;
+	int i;
+
+	i = 1;
+	while (i < argc)
 	{
-		arr = ft_lstnew_Doubly(i);
-		ft_lstadd_back_Doubly(&arr_1 , arr);
+		(*temp) = ft_lstnew_Doubly(ft_atoi(argv[i]));
+		printf("new:%d\n", (*temp)->content);
+		ft_lstadd_back_Doubly(arr , *temp);
 		i++;
 	}
-	i = 100;
-	while (i < 105)
+	//return (arr);
+}
+int confrim_sort()
+{
+	return (1);
+}
+t_list *small_sort()
+{
+
+	return 0;
+}
+int main(int argc, char **argv)
+{
+	t_listd *arr;
+	t_listd *arr_1;
+	t_listd *arr_2;
+	int i = 1;
+
+	if (argc == 1)
 	{
-		arr = ft_lstnew_Doubly(i);
-		ft_lstadd_back_Doubly(&arr_2 , arr);
-		i++;
+		write(1, "Error!\n", 7);
+		return (1);
 	}
-	print_out(arr_1);
-	print_out(arr_2);
-	operation_push(&arr_1, &arr_2);
-	// arr = arr_2;
-	// printf("delere : arr:%d\n", arr->content);
-	// ft_lstdel_Doubly(&arr_2, arr);
-	print_out(arr_1);
-	print_out(arr_2);
+	// while (i < argc)
+	// {
+	// 	arr = ft_lstnew_Doubly(ft_atoi(argv[i]));
+	// 	ft_lstadd_back_Doubly(&arr_1 , arr);
+	// 	i++;
+	// }
+	// i = 100;
+	// while (i < 105)
+	// {
+	// 	arr = ft_lstnew_Doubly(i);
+	// 	ft_lstadd_back_Doubly(&arr_2 , arr);
+	// 	i++;
+	// }
+	
+	parse_lst(argc, argv,&arr ,&arr_1 );
+	print_out(arr);
+
 	return 0;
 }
