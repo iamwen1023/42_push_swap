@@ -277,6 +277,7 @@ int the_min(t_listd *arr)
 			min = arr->content;
 	return (min);
 }
+
 t_listd *small_sort_3(t_listd *arr , t_listd *current)
 {
 	if (current->content == the_max(arr))
@@ -305,6 +306,38 @@ t_listd *small_sort_3(t_listd *arr , t_listd *current)
 	}
 	return arr;
 }
+
+t_listd *small_sort_5(t_listd *arr , t_listd *current)
+{
+	t_listd *arr_b;
+
+	arr_b = 0;
+	operation_push_b(&arr_b, &arr);
+	operation_push_b(&arr_b, &arr);
+	arr = small_sort_3(arr , arr);
+	print_out(arr);
+	current = arr;
+	while(current->next != 0)
+	{
+		//print_out(arr_b);
+		printf("arr_b->content :%d\n", arr_b->content);
+		printf("current->content :%d\n", current->content);
+		// if (arr_b->content < current->content)
+		// {	
+		// 	operation_push_b(&arr, &arr_b);
+		// 	printf("a < b\n");
+		// 	print_out(arr);
+		// 	arr_b = arr_b->next;
+		// }
+		current = current->next;
+		operation_rotate_a(&arr);
+		printf("current->content :%d\n", current->content);
+		printf("current->content :%d\n", current->next->content);
+		//print_out(arr);
+	}
+	return arr;
+}
+
 int main(int argc, char **argv)
 {
 	t_listd *arr_a;
@@ -332,7 +365,7 @@ int main(int argc, char **argv)
 	
 	parse_lst(argc, argv,&arr_a ,&temp);
 	print_out(arr_a);
-	arr_a = small_sort_3(arr_a, arr_a);
+	arr_a = small_sort_5(arr_a, arr_a);
 	print_out(arr_a);
 	return 0;
 }
