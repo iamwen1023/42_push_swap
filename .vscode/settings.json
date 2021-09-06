@@ -2,5 +2,6 @@
 	"files.associations": {
 		"random": "c",
 		"ratio": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
