@@ -63,30 +63,6 @@ int	if_repetive_num(int *arry)
 	}
 	return 0;
 }
-int quicksort(t_list *arr, int numb)
-{
-	int step;
-	int	i;
-	t_list *arr2;
-	t_list *temp;
-
-	step = 0;
-	i = 1;
-	temp = arr->next;
-	while(i < numb)
-	{
-		if(arr->content  > temp->content)
-		{
-			ft_lstadd_front(arr2, temp);
-			ft_lstdelone
-			printf("pb");
-			temp = arr->next;
-		}
-
-	}
-
-	return 0;
-}
 
 int main(int argc, char **argv)
 {

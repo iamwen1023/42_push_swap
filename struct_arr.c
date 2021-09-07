@@ -3,14 +3,6 @@
 // #include <stdio.h>
 #include "push_swap.h"
 
-typedef struct s_listd
-{
-	int			content;
-	struct s_listd	*prev;
-	struct s_listd	*next;
-} t_listd;
-
-
 t_listd	*ft_lstnew_Doubly(int content)
 {
 	t_listd		*re;
@@ -119,11 +111,7 @@ void swap_a(t_listd **lst)
 	write(1, "sa\n", 3);
 }
 
-<<<<<<< HEAD
 void swap_b(t_listd **lst)
-=======
-void operation_swap_b(t_listd **lst)
->>>>>>> ce0de38568ed6bfe0ace698ba88b126a19a113f0
 {
 	t_listd *temp;
 
@@ -155,13 +143,13 @@ void push_b(t_listd **lst_a, t_listd **lst_b)
 {
 	t_listd *temp;
 
-	if (!(*lst_b))
+	if (!(*lst_a))
 		return;
-	temp = ft_lstnew_Doubly((*lst_b)->content);
-	temp->next =(*lst_b)->next;
-	temp->prev = (*lst_b)->prev;
-	ft_lstadd_front_Doubly(lst_a, temp);
-	ft_lstdel_Doubly(lst_b, *lst_b);
+	temp = ft_lstnew_Doubly((*lst_a)->content);
+	temp->next =(*lst_a)->next;
+	temp->prev = (*lst_a)->prev;
+	ft_lstadd_front_Doubly(lst_b, temp);
+	ft_lstdel_Doubly(lst_a, *lst_a);
 	write(1, "pb\n", 3);
 }
 void rotate_a(t_listd **lst)
@@ -196,10 +184,6 @@ void rotate_b(t_listd **lst)
 	(*lst)->prev = 0;
 	write(1, "rb\n", 3);
 }
-void operation_rotate_b(t_listd **lst)
-{
-	t_listd *temp;
-	t_listd *key;
 
 void r_rotate_a(t_listd **lst)
 {
@@ -272,14 +256,12 @@ int the_max(t_listd *arr)
 	int max;
 
 	max = arr->content;
-	while(arr->next)
+	while(arr)
 	{
 		if (arr->content > max)
 			max = arr->content;
 		arr = arr->next;
 	}
-	if (arr->content > max)
-			max = arr->content;
 	return (max);
 }
 
@@ -288,14 +270,12 @@ int the_min(t_listd *arr)
 	int min;
 
 	min = arr->content;
-	while(arr->next)
+	while(arr)
 	{
 		if (arr->content < min)
 			min = arr->content;
 		arr = arr->next;
 	}
-	if (arr->content < min)
-			min = arr->content;
 	return (min);
 }
 
@@ -380,39 +360,23 @@ t_listd *small_sort_5(t_listd *arr , t_listd *current)
 	return arr;
 }
 
-int main(int argc, char**argv)
-{
-	t_listd *arr_a;
-	t_listd *temp;
-	// t_listd *arr_1 = 0;
-	// t_listd *arr_2 = 0;
-	// t_listd *arr;
-	//int i;
+// int main(int argc, char**argv)
+// {
+// 	t_listd *arr_a;
+// 	t_listd *temp;
+// 	int ans;
 
-	if (argc == 1)
-	{
-		write(1, "Error!\n", 7);
-		return (1);
-	}
+// 	if (argc == 1)
+// 	{
+// 		write(1, "Error!\n", 7);
+// 		return (1);
+// 	}
+// 	parse_lst(argc, argv,&arr_a ,&temp);
+// 	ans = the_min(arr_a);
+// 	//replace_by_ranking(&arr_a, argc,argv);
 
-	// i = 0;
-	// while (i < 5)
-	// {
-	// 	arr = ft_lstnew_Doubly(i);
-	// 	ft_lstadd_back_Doubly(&arr_1 , arr);
-	// 	print_out(arr_1);
-	// 	i++;
-	// }
-	// i = 100;
-	// while (i < 105)
-	// {
-	// 	arr = ft_lstnew_Doubly(i);
-	// 	ft_lstadd_back_Doubly(&arr_2 , arr);
-	// 	i++;
-	// }
-	parse_lst(argc, argv,&arr_a ,&temp);
-	//print_out(arr_a);
-	arr_a = small_sort_5(arr_a, arr_a);
-	//print_out(arr_a);
-	return 0;
-}
+// 	//print_out(arr_a);
+// 	//arr_a = small_sort_5(arr_a, arr_a);
+// 	printf("ans:%d", ans);
+// 	return 0;
+// }
