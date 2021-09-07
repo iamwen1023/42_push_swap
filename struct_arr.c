@@ -3,14 +3,6 @@
 // #include <stdio.h>
 #include "push_swap.h"
 
-typedef struct s_listd
-{
-	int			content;
-	struct s_listd	*prev;
-	struct s_listd	*next;
-} t_listd;
-
-
 t_listd	*ft_lstnew_Doubly(int content)
 {
 	t_listd		*re;
@@ -119,11 +111,7 @@ void swap_a(t_listd **lst)
 	write(1, "sa\n", 3);
 }
 
-<<<<<<< HEAD
 void swap_b(t_listd **lst)
-=======
-void operation_swap_b(t_listd **lst)
->>>>>>> ce0de38568ed6bfe0ace698ba88b126a19a113f0
 {
 	t_listd *temp;
 
@@ -196,10 +184,6 @@ void rotate_b(t_listd **lst)
 	(*lst)->prev = 0;
 	write(1, "rb\n", 3);
 }
-void operation_rotate_b(t_listd **lst)
-{
-	t_listd *temp;
-	t_listd *key;
 
 void r_rotate_a(t_listd **lst)
 {
@@ -411,8 +395,11 @@ int main(int argc, char**argv)
 	// 	i++;
 	// }
 	parse_lst(argc, argv,&arr_a ,&temp);
+	print_out(arr_a);
+	replace_by_ranking(&arr_a, argc,argv);
+
 	//print_out(arr_a);
-	arr_a = small_sort_5(arr_a, arr_a);
-	//print_out(arr_a);
+	//arr_a = small_sort_5(arr_a, arr_a);
+	print_out(arr_a);
 	return 0;
 }
