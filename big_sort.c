@@ -17,6 +17,7 @@ int *sort_arry(int argc, char**argv)
 		arr[i] = ft_atoi(argv[i+1]);
 		i++;
 	}
+	i = 0;
 	
 	return arr;
 }
