@@ -15,6 +15,6 @@ int main(int argc, char **argv)
 		small_sort_5(&arr);
 	else 
 		radix_sort(&arr, argc-1);
-	print_out(arr);
+	//print_out(arr);
 	return (0);
 }

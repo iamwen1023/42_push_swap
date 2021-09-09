@@ -7,12 +7,15 @@ int	if_numb(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (s[0] != '-' && ft_isdigit(s[0]) == 0)
-		{
+		if (s[0] != '-' && s[0] != '+' && ft_isdigit(s[0]) == 0)
 			return (0);
-		}
 		if (i > 0 && ft_isdigit(s[i]) == 0)
 			return (0);
+		if (s[0] == '-' || s[0] == '+')
+		{
+			if (!s[1])
+				return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -23,11 +26,11 @@ int	if_repetive_num(int *arry, int size)
 	int i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	while (i < size)
 	{
 		j = i;
-		while (arry[j + 1])
+		while (j + 1 < size)
 		{
 			if (arry[i] == arry[j+1])
 				return (1);
