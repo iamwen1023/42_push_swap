@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 15:57:30 by wlo               #+#    #+#             */
+/*   Updated: 2021/09/10 17:02:32 by wlo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_listd
 {
-	int			content;
+	int				content;
 	struct s_listd	*prev;
 	struct s_listd	*next;
-} t_listd;
+}	t_listd;
 
 int		if_numb(char *s);
 int		if_repetive_num(int *arry, int size);
@@ -19,10 +30,10 @@ int		check_error(int argc, char **argv);
 void	error_exit(void);
 
 void	print_out(t_listd *arr_t);
-t_listd	*ft_lstnew_Doubly(int content);
-void	ft_lstadd_front_Doubly(t_listd **lst, t_listd *new);
-void	ft_lstadd_back_Doubly(t_listd **lst, t_listd *new);
-void	ft_lstdel_Doubly(t_listd **lst, t_listd *del);
+t_listd	*ft_lstnew_doubly(int content);
+void	ft_lstadd_front_doubly(t_listd **lst, t_listd *new);
+void	ft_lstadd_back_doubly(t_listd **lst, t_listd *new);
+void	ft_lstdel_doubly(t_listd **lst, t_listd *del);
 
 void	swap_a(t_listd **lst);
 void	swap_b(t_listd **lst);
@@ -32,12 +43,12 @@ void	rotate_a(t_listd **lst);
 void	rotate_b(t_listd **lst);
 void	r_rotate_a(t_listd **lst);
 void	r_rotate_b(t_listd **lst);
-t_listd *parse_lst(int argc, char **argv);
+t_listd	*parse_lst(int argc, char **argv);
 int		confrim_sort(t_listd *arr);
 
 int		the_max(t_listd *arr);
 int		the_min(t_listd *arr);
-void	small_sort_3(t_listd **arr , t_listd *current);
+void	small_sort_3(t_listd **arr, t_listd *current);
 void	small_sort_5(t_listd **arr);
 
 void	swap(int *xp, int *yp);

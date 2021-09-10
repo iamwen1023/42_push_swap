@@ -1,11 +1,23 @@
-#include "../push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
+/*   Updated: 2021/09/10 18:24:00 by wlo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int the_max(t_listd *arr)
+#include "push_swap.h"
+
+int	the_max(t_listd *arr)
 {
-	int max;
+	int	max;
 
 	max = arr->content;
-	while(arr)
+	while (arr)
 	{
 		if (arr->content > max)
 			max = arr->content;
@@ -14,12 +26,12 @@ int the_max(t_listd *arr)
 	return (max);
 }
 
-int the_min(t_listd *arr)
+int	the_min(t_listd *arr)
 {
-	int min;
+	int	min;
 
 	min = arr->content;
-	while(arr)
+	while (arr)
 	{
 		if (arr->content < min)
 			min = arr->content;
@@ -28,7 +40,7 @@ int the_min(t_listd *arr)
 	return (min);
 }
 
-void	small_sort_3(t_listd **arr , t_listd *current)
+void	small_sort_3(t_listd **arr, t_listd *current)
 {
 	if (current->content == the_max(*arr))
 	{
@@ -46,7 +58,7 @@ void	small_sort_3(t_listd **arr , t_listd *current)
 		swap_a(arr);
 		rotate_a(arr);
 	}
-	else 
+	else
 	{
 		current = current->next;
 		if (current->content == the_min(*arr))
@@ -56,23 +68,29 @@ void	small_sort_3(t_listd **arr , t_listd *current)
 	}
 }
 
+#include <stdio.h>
 void	small_sort_5(t_listd **arr)
 {
-	t_listd *arr_b;
+	t_listd	*arr_b;
 
 	arr_b = 0;
 	push_b(arr, &arr_b);
 	push_b(arr, &arr_b);
 	if (confrim_sort(*arr) == 0)
-		small_sort_3(arr , *arr);
-	while(confrim_sort(*arr) == 0 || arr_b)
+		small_sort_3(arr, *arr);
+	while (confrim_sort(*arr) == 0 || arr_b)
 	{
-		if ((arr_b) && arr_b->content < (*arr)->content)
+		if ((arr_b) && arr_b->content == (*arr)->content - 1)
 			push_a(arr, &arr_b);
 		else if (confrim_sort(*arr) == 1 && arr_b->content > the_max(*arr))
 		{
 			push_a(arr, &arr_b);
 			rotate_a(arr);
+		}
+		else if (confrim_sort(*arr) == 1 && arr_b->content == the_max(*arr) - 1)
+		{
+			r_rotate_a(arr);
+			push_a(arr, &arr_b);
 		}
 		else
 			rotate_a(arr);
