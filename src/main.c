@@ -6,26 +6,24 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:51:20 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 10:23:09 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 11:01:45 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_arr(t_listd **arr)
+void	free_arr(t_listd *arr)
 {
 	t_listd	*current;
 
 	if (!arr)
 		return ;
-	current = (*arr)->next;
-	while (current->next)
+	while (arr)
 	{
-		free(*arr);
-		arr = &current;
-		current = current->next;
+		current = arr;
+		arr = arr->next;
+		free(current);
 	}
-	free(*arr);
 }
 
 int	main(int argc, char **argv)
@@ -43,6 +41,6 @@ int	main(int argc, char **argv)
 		small_sort_5(&arr);
 	else
 		radix_sort(&arr, argc - 1);
-	free_arr(&arr);
+	free_arr(arr);
 	return (0);
 }

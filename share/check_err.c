@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:34:10 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:09:02 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 11:37:49 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int	check_error(int argc, char **argv)
 	if (argc == 1 || argc == 2)
 		return (1);
 	i = 0;
-	while (argv[++i])
+	while (++i < argc)
 	{
+		if (argv[i][0] == '\0')
+			return (1);
 		if (if_numb(argv[i]) == 0)
 			return (1);
 	}
