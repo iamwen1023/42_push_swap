@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 18:24:00 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 10:09:05 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,19 @@ void	small_sort_3(t_listd **arr, t_listd *current)
 	}
 }
 
-#include <stdio.h>
+void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)
+{
+	if (confrim_sort(*arr) == 1 && (*arr_b)->content == the_max(*arr) - 1)
+	{
+		r_rotate_a(arr);
+		push_a(arr, arr_b);
+	}
+	else if (!(*arr_b) && ((*arr)->content < 3))
+		r_rotate_a(arr);
+	else
+		rotate_a(arr);
+}
+
 void	small_sort_5(t_listd **arr)
 {
 	t_listd	*arr_b;
@@ -82,17 +94,16 @@ void	small_sort_5(t_listd **arr)
 	{
 		if ((arr_b) && arr_b->content == (*arr)->content - 1)
 			push_a(arr, &arr_b);
+		else if ((arr_b) && arr_b->content == (*arr)->content + 1)
+		{
+			rotate_a(arr);
+			push_a(arr, &arr_b);
+		}	
 		else if (confrim_sort(*arr) == 1 && arr_b->content > the_max(*arr))
-		{
 			push_a(arr, &arr_b);
-			rotate_a(arr);
-		}
-		else if (confrim_sort(*arr) == 1 && arr_b->content == the_max(*arr) - 1)
-		{
-			r_rotate_a(arr);
+		else if (confrim_sort(*arr) == 1 && arr_b->content < the_min(*arr))
 			push_a(arr, &arr_b);
-		}
 		else
-			rotate_a(arr);
+			small_sort_5_2(arr, &arr_b);
 	}
 }

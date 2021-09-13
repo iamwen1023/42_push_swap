@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:38:40 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:52:09 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 10:22:43 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,22 @@ void	check_operation(char *line, t_listd **arr, t_listd **arr_b)
 		check_operation_2(line, arr, arr_b);
 }
 
+void	free_arr(t_listd **arr)
+{
+	t_listd	*current;
+
+	if (!arr)
+		return ;
+	current = (*arr)->next;
+	while (current->next)
+	{
+		free(*arr);
+		arr = &current;
+		current = current->next;
+	}
+	free(*arr);
+}
+
 int	main(int argc, char**argv)
 {
 	t_listd	*arr;
@@ -90,5 +106,6 @@ int	main(int argc, char**argv)
 		write(1, "OK\n", 3);
 	else
 		write(1, "K0\n", 3);
+	free_arr(&arr);
 	return (0);
 }
