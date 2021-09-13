@@ -6,7 +6,11 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/09/10 23:15:25 by wlo              ###   ########.fr       */
+=======
+/*   Updated: 2021/09/10 18:24:00 by wlo              ###   ########.fr       */
+>>>>>>> a410c19ccb002b009b186f14be22533c8d094ce6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +72,7 @@ void	small_sort_3(t_listd **arr, t_listd *current)
 	}
 }
 
+<<<<<<< HEAD
 void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)
 {
 	if (confrim_sort(*arr) == 1 && (*arr_b)->content == the_max(*arr) - 1)
@@ -81,6 +86,9 @@ void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)
 		rotate_a(arr);
 }
 
+=======
+#include <stdio.h>
+>>>>>>> a410c19ccb002b009b186f14be22533c8d094ce6
 void	small_sort_5(t_listd **arr)
 {
 	t_listd	*arr_b;
@@ -94,6 +102,7 @@ void	small_sort_5(t_listd **arr)
 	{
 		if ((arr_b) && arr_b->content == (*arr)->content - 1)
 			push_a(arr, &arr_b);
+<<<<<<< HEAD
 		else if ((arr_b) && arr_b->content == (*arr)->content + 1)
 		{
 			rotate_a(arr);
@@ -107,3 +116,19 @@ void	small_sort_5(t_listd **arr)
 			small_sort_5_2(arr, &arr_b);
 	}
 }
+=======
+		else if (confrim_sort(*arr) == 1 && arr_b->content > the_max(*arr))
+		{
+			push_a(arr, &arr_b);
+			rotate_a(arr);
+		}
+		else if (confrim_sort(*arr) == 1 && arr_b->content == the_max(*arr) - 1)
+		{
+			r_rotate_a(arr);
+			push_a(arr, &arr_b);
+		}
+		else
+			rotate_a(arr);
+	}
+}
+>>>>>>> a410c19ccb002b009b186f14be22533c8d094ce6
