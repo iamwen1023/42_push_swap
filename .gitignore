@@ -1,7 +1,1 @@
-*.o
-a.out
-push_swap_tutorial/
 .DS_Store
-push_swap_tester/
-checker_linux
-checker_Mac
