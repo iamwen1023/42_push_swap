@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:57:30 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 10:33:14 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 18:32:52 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_listd
 	struct s_listd	*next;
 }	t_listd;
 
-int		if_numb(char *s);
+int		if_num(char *s);
 int		if_repetive_num(int *arry, int size);
 int		check_error(int argc, char **argv);
 void	error_exit(void);
@@ -43,11 +43,10 @@ void	rotate_a(t_listd **lst);
 void	rotate_b(t_listd **lst);
 void	r_rotate_a(t_listd **lst);
 void	r_rotate_b(t_listd **lst);
-t_listd	*parse_lst(int argc, char **argv);
 int		confrim_sort(t_listd *arr);
+t_listd	*parse_lst(int argc, char **argv);
+t_listd	*parse_arg(char *argv);
 
-int		the_max(t_listd *arr);
-int		the_min(t_listd *arr);
 void	small_sort_3(t_listd **arr, t_listd *current);
 void	small_sort_5(t_listd **arr);
 
@@ -55,7 +54,10 @@ void	swap(int *xp, int *yp);
 void	print_out_2(int *arr, int argc);
 int		*sort_arry(int argc, char**argv);
 void	replace_by_ranking(t_listd **arr, int argc, char**argv);
+void	replace_by_ranking_arg(t_listd **arr, int argc, char**argv);
 
+int		the_max(t_listd *arr);
+int		the_min(t_listd *arr);
 void	radix_sort(t_listd **arr, int size);
 
 int		ft_strcmp(const char *s1, const char *s2);

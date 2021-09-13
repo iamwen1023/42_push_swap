@@ -3,14 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   big_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wlo <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:48:12 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 16:51:13 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 18:13:46 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	the_max(t_listd *arr)
+{
+	int	max;
+
+	max = arr->content;
+	while (arr)
+	{
+		if (arr->content > max)
+			max = arr->content;
+		arr = arr->next;
+	}
+	return (max);
+}
+
+int	the_min(t_listd *arr)
+{
+	int	min;
+
+	min = arr->content;
+	while (arr)
+	{
+		if (arr->content < min)
+			min = arr->content;
+		arr = arr->next;
+	}
+	return (min);
+}
 
 void	radix_sort(t_listd **arr, int size)
 {

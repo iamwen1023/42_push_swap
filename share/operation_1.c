@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:26:11 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:52:22 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 17:27:10 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	confrim_sort(t_listd *arr)
 
 	incre = 0;
 	decre = 0;
+	if (!arr)
+		return (1);
 	while (arr->next)
 	{
 		if (arr->content < arr->next->content)

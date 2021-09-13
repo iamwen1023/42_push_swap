@@ -3,11 +3,11 @@ LIB			= libft
 LIB.A		= libft.a
 CH_SRC		= check/check_op1.c check/check_op2.c check/checker_main.c
 P_SRC		= src/big_sort.c src/main.c src/small_sort.c
-SHARE_SRC 	= share/check_err.c share/creat_listd.c share/operation_1.c share/operation_2.c share/replace_by_ranking.c
+SHARE_SRC 	= share/check_err.c share/creat_listd.c share/operation_1.c share/operation_2.c share/replace_by_ranking.c share/parse_list.c
 CH_OBJ_NAME = $(CH_SRC:.c=.o)
 P_OBJ_NAME	= $(P_SRC:.c=.o)
 SH_OBJ_NAME	= $(SHARE_SRC:.c=.o)
-FLAGS		= -Wall -Wextra -Werror -I${INCS} -I.
+FLAGS		= -Wall -Wextra -Werror -I${INCS} -I. -fsanitize=address -g3 -O0
 NAME_C		= checker
 NAME_P		= push_swap
 		

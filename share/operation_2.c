@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:32:07 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:52:56 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 13:31:58 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,4 @@ void	r_rotate_b(t_listd **lst)
 	key->prev = 0;
 	(*lst) = key;
 	write(1, "rrb\n", 4);
-}
-
-t_listd	*parse_lst(int argc, char **argv)
-{
-	int		i;
-	t_listd	*temp;
-	t_listd	*arr;
-
-	i = 1;
-	temp = 0;
-	arr = 0;
-	while (i < argc)
-	{
-		(temp) = ft_lstnew_doubly(ft_atoi(argv[i]));
-		ft_lstadd_back_doubly(&arr, temp);
-		i++;
-	}
-	replace_by_ranking(&arr, argc, argv);
-	return (arr);
 }

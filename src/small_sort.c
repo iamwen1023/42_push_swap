@@ -6,41 +6,13 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 10:09:05 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 18:12:49 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	the_max(t_listd *arr)
-{
-	int	max;
-
-	max = arr->content;
-	while (arr)
-	{
-		if (arr->content > max)
-			max = arr->content;
-		arr = arr->next;
-	}
-	return (max);
-}
-
-int	the_min(t_listd *arr)
-{
-	int	min;
-
-	min = arr->content;
-	while (arr)
-	{
-		if (arr->content < min)
-			min = arr->content;
-		arr = arr->next;
-	}
-	return (min);
-}
-
-void	small_sort_3(t_listd **arr, t_listd *current)
+void	small_sort_3_2(t_listd **arr, t_listd *current)
 {
 	if (current->content == the_max(*arr))
 	{
@@ -66,6 +38,13 @@ void	small_sort_3(t_listd **arr, t_listd *current)
 		else
 			r_rotate_a(arr);
 	}
+}
+
+void	small_sort_3(t_listd **arr, t_listd *current)
+{
+	if (!(*arr)->content || !current)
+		return ;
+	small_sort_3_2(arr, current);
 }
 
 void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)

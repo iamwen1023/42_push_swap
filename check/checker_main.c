@@ -6,29 +6,11 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:38:40 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 11:01:37 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 14:34:03 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t			i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	if (s1[i] == '\0' || s2[i] == '\0')
-		return (s1[i] - s2[i]);
-	return (0);
-}
 
 void	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
 {

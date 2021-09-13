@@ -6,11 +6,11 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:35:40 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 16:41:08 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 14:50:35 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	print_out(t_listd *arr_t)
 {
