@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:51:20 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 18:39:07 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/13 18:50:21 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ int	main(int argc, char **argv)
 
 	if (check_error(argc, argv) == 1)
 		error_exit();
+
 	if (argc == 2)
 		arr = parse_arg(argv[1]);
 	else
 		arr = parse_lst(argc, argv);
+	arr = parse_lst(argc, argv);
 	print_out(arr);
 	if (confrim_sort(arr) == 1)
 		return (0);
@@ -67,4 +69,5 @@ int	main(int argc, char **argv)
 	print_out(arr);
 	free_arr(arr);
 	return (0);
+
 }
