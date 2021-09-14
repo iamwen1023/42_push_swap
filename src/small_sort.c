@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/14 13:56:36 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/14 15:00:43 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	small_sort_3_2(t_listd **arr, t_listd *current)
 
 void	small_sort_3(t_listd **arr, t_listd *current)
 {
-	if (!(*arr))
+	if (!(*arr) || !(*arr)->next)
 		return ;
 	small_sort_3_2(arr, current);
 }

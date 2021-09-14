@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:51:20 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/14 13:56:22 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/14 14:49:15 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	n = count_n(arr);
 	if (confrim_sort(arr) == 1)
 		return (0);
-	if (arr && n < 4)
+	if (arr && n < 4)	
 		small_sort_3(&arr, arr);
 	else if (n < 6)
 		small_sort_5(&arr);

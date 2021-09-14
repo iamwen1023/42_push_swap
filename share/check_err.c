@@ -6,12 +6,12 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:34:10 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/14 12:48:57 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/14 14:52:30 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
+#include <stdio.h>
 int	if_num(char *s)
 {
 	int	i;
