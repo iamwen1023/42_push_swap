@@ -6,10 +6,9 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:52:18 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 18:50:17 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/14 13:56:36 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -43,11 +42,10 @@ void	small_sort_3_2(t_listd **arr, t_listd *current)
 
 void	small_sort_3(t_listd **arr, t_listd *current)
 {
-	if (!(*arr)->content || !current)
+	if (!(*arr))
 		return ;
 	small_sort_3_2(arr, current);
 }
-
 
 void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)
 {
@@ -61,7 +59,6 @@ void	small_sort_5_2(t_listd	**arr, t_listd **arr_b)
 	else
 		rotate_a(arr);
 }
-
 
 void	small_sort_5(t_listd **arr)
 {

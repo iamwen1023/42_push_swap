@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wlo <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/14 11:52:41 by wlo               #+#    #+#             */
+/*   Updated: 2021/09/14 11:53:25 by wlo              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_listd	*parse_lst(int argc, char **argv)
@@ -32,7 +44,7 @@ t_listd	*parse_arg(char *argv)
 	num_list = ft_split(argv, ' ');
 	total = -1;
 	while (num_list[++total])
-	i = 0;
+		i = 0;
 	while (i < total)
 	{
 		(temp) = ft_lstnew_doubly(ft_atoi(num_list[i]));

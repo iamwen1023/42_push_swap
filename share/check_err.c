@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 15:34:10 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/13 18:32:59 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/14 12:48:57 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ int	if_repetive_num(int *arry, int size)
 		while (j + 1 < size)
 		{
 			if (arry[i] == arry[j + 1])
+			{
+				free(arry);
 				return (1);
+			}
 			j++;
 		}
 		i++;
 	}
+	free(arry);
 	return (0);
 }
 
@@ -57,11 +61,9 @@ int	check_arg(char *argv)
 {
 	char	**num_list;
 	int		i;
-	int 	total;
+	int		total;
 	int		*arr;
 
-	if (!ft_strcmp(argv, ""))
-		error_exit();
 	num_list = ft_split(argv, ' ');
 	total = -1;
 	while (num_list[++total])
@@ -80,11 +82,7 @@ int	check_arg(char *argv)
 		free(num_list[i]);
 	free(num_list);
 	if (if_repetive_num(arr, total))
-	{
-		free(arr);
 		error_exit();
-	}
-	free(arr);
 	return (total);
 }
 
@@ -95,12 +93,10 @@ int	check_error(int ac, char **av)
 
 	if (ac == 1 || (ac == 2 && ((if_num(av[1]) == 1) || check_arg(av[1]) >= 1)))
 		return (0);
-	if (ac == 2 && check_arg(av[1]) < 1)
-		return (1);
 	i = 0;
 	while (++i < ac)
 	{
-		if (if_num(av[i]) == 0)
+		if (if_num(av[i]) == 0 || (!ft_strcmp(av[i], "")))
 			return (1);
 	}
 	arr = (int *)malloc((ac - 1) * sizeof(int));
@@ -110,7 +106,6 @@ int	check_error(int ac, char **av)
 	while (++i < ac - 1)
 		arr[i] = ft_atoi(av[i + 1]);
 	i = if_repetive_num(arr, ac - 1);
-	free(arr);
 	if (i == 1)
 		return (1);
 	return (0);
