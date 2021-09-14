@@ -70,8 +70,11 @@ int	main(int argc, char **argv)
 		arr = parse_lst(argc, argv);
 	n = count_n(arr);
 	if (confrim_sort(arr) == 1)
+	{
+		free_arr(arr);
 		return (0);
-	if (arr && n < 4)	
+	}
+	if (arr && n < 4)
 		small_sort_3(&arr, arr);
 	else if (n < 6)
 		small_sort_5(&arr);

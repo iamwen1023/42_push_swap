@@ -79,7 +79,7 @@ int	confrim_sort(t_listd *arr)
 
 	incre = 0;
 	decre = 0;
-	if (!arr)
+	if (!arr || !(arr->next))
 		return (1);
 	while (arr->next)
 	{
