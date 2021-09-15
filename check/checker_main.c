@@ -12,25 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t			i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	if (s1[i] == '\0' || s2[i] == '\0')
-		return (s1[i] - s2[i]);
-	return (0);
-}
-
-void	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
+int	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
 {
 	if (!ft_strcmp(line, "rr"))
 	{
@@ -47,10 +29,11 @@ void	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
 		r_rotate_b_np(arr_b);
 	}
 	else
-		error_exit();
+		return (1);
+	return (0);
 }
 
-void	check_operation(char *line, t_listd **arr, t_listd **arr_b)
+int	check_operation(char *line, t_listd **arr, t_listd **arr_b)
 {
 	if (!line)
 		error_exit();
@@ -67,14 +50,15 @@ void	check_operation(char *line, t_listd **arr, t_listd **arr_b)
 	else if (!ft_strcmp(line, "rb"))
 		rotate_b_np(arr_b);
 	else
-		check_operation_2(line, arr, arr_b);
+		return (check_operation_2(line, arr, arr_b));
+	return (0);
 }
 
-void	free_arr(t_listd *arr)
+void	free_arr(t_listd *arr, t_listd *arr_b)
 {
 	t_listd	*current;
 
-	if (!arr)
+	if (!arr && !arr_b)
 		return ;
 	while (arr)
 	{
@@ -82,6 +66,19 @@ void	free_arr(t_listd *arr)
 		arr = arr->next;
 		free(current);
 	}
+	while (arr_b)
+	{
+		current = arr_b;
+		arr_b = arr_b->next;
+		free(current);
+	}
+}
+
+void	free_all(char *line, t_listd *arr, t_listd *arr_b)
+{
+	free(line);
+	free_arr(arr, arr_b);
+	error_exit();
 }
 
 int	main(int argc, char**argv)
@@ -91,6 +88,8 @@ int	main(int argc, char**argv)
 	t_listd	*arr_b;
 
 	arr_b = 0;
+	if (argc == 1)
+		return (0);
 	if (check_error(argc, argv) == 1)
 		error_exit();
 	if (argc == 2)
@@ -99,14 +98,14 @@ int	main(int argc, char**argv)
 		arr = parse_lst(argc, argv);
 	while (get_next_line(0, &line) > 0)
 	{
-		check_operation(line, &arr, &arr_b);
+		if (check_operation(line, &arr, &arr_b) == 1)
+			free_all(line, arr, arr_b);
 		free(line);
 	}
-	free(line);
 	if (confrim_sort(arr) == 1 && !arr_b)
 		write(1, "OK\n", 3);
 	else
 		write(1, "K0\n", 3);
-	free_arr(arr);
+	free_arr(arr, arr_b);
 	return (0);
 }

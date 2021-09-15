@@ -64,3 +64,17 @@ void	error_exit(void)
 	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }
+
+void	free_arg(char **num_list)
+{
+	int	i;
+	int	total;
+
+	total = 0;
+	while (num_list[total])
+		total++;
+	i = -1;
+	while (++i < total)
+		free(num_list[i]);
+	free(num_list);
+}

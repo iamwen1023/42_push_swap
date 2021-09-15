@@ -44,8 +44,10 @@ void	rotate_b(t_listd **lst);
 void	r_rotate_a(t_listd **lst);
 void	r_rotate_b(t_listd **lst);
 int		confrim_sort(t_listd *arr);
+int		ft_strcmp(const char *s1, const char *s2);
 t_listd	*parse_lst(int argc, char **argv);
 t_listd	*parse_arg(char *argv);
+void	free_arg(char **num_list);
 
 void	small_sort_3(t_listd **arr, t_listd *current);
 void	small_sort_5(t_listd **arr);
@@ -60,9 +62,8 @@ int		the_max(t_listd *arr);
 int		the_min(t_listd *arr);
 void	radix_sort(t_listd **arr, int size);
 
-int		ft_strcmp(const char *s1, const char *s2);
-void	check_operation_2(char *line, t_listd **arr, t_listd **arr_b);
-void	check_operation(char *line, t_listd **arr, t_listd **arr_b);
+int		check_operation_2(char *line, t_listd **arr, t_listd **arr_b);
+int		check_operation(char *line, t_listd **arr, t_listd **arr_b);
 
 void	swap_a_np(t_listd **lst);
 void	swap_b_np(t_listd **lst);
