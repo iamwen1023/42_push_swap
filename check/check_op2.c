@@ -83,3 +83,29 @@ void	r_rotate_b_np(t_listd **lst)
 	key->prev = 0;
 	(*lst) = key;
 }
+
+int	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
+{
+	if (!ft_strcmp(line, "rr"))
+	{
+		rotate_a_np(arr);
+		rotate_b_np(arr_b);
+	}
+	else if (!ft_strcmp(line, "rra"))
+		r_rotate_a_np(arr);
+	else if (!ft_strcmp(line, "rrb"))
+		r_rotate_b_np(arr_b);
+	else if (!ft_strcmp(line, "rrr"))
+	{
+		r_rotate_a_np(arr);
+		r_rotate_b_np(arr_b);
+	}
+	else if (!ft_strcmp(line, "ss"))
+	{
+		swap_a_np(arr);
+		swap_b_np(arr_b);
+	}
+	else
+		return (1);
+	return (0);
+}

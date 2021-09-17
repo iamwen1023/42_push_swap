@@ -12,24 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	size_t			i;
-
-	i = 0;
-	if (!s1 || !s2)
-		return (-1);
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	if (s1[i] == '\0' || s2[i] == '\0')
-		return (s1[i] - s2[i]);
-	return (0);
-}
-
 void	free_arr(t_listd *arr)
 {
 	t_listd	*current;
@@ -70,8 +52,11 @@ int	main(int argc, char **argv)
 		arr = parse_lst(argc, argv);
 	n = count_n(arr);
 	if (confrim_sort(arr) == 1)
+	{
+		free_arr(arr);
 		return (0);
-	if (arr && n < 4)	
+	}
+	if (arr && n < 4)
 		small_sort_3(&arr, arr);
 	else if (n < 6)
 		small_sort_5(&arr);

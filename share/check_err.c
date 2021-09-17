@@ -11,13 +11,37 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
+
+int	check_atoi(char *s)
+{
+	long	result;
+	int		sign;
+
+	result = 0;
+	sign = 1;
+	if (s[0] == '-')
+	{
+		sign = -1;
+		s++;
+	}
+	while (*s >= '0' && *s <= '9')
+	{
+		result = result * 10 + *s - '0';
+		s++;
+		if (sign < 0 && result > 2147483648)
+			return (0);
+		if (sign > 0 && result > 2147483647)
+			return (0);
+	}
+	return (1);
+}
+
 int	if_num(char *s)
 {
 	int	i;
 
-	i = 0;
-	while (s[i])
+	i = -1;
+	while (s[++i])
 	{
 		if (s[0] != '-' && s[0] != '+' && ft_isdigit(s[0]) == 0)
 			return (0);
@@ -28,9 +52,8 @@ int	if_num(char *s)
 			if (!s[1])
 				return (0);
 		}
-		i++;
 	}
-	return (1);
+	return (check_atoi(s));
 }
 
 int	if_repetive_num(int *arry, int size)
@@ -69,7 +92,10 @@ int	check_arg(char *argv)
 	while (num_list[++total])
 	{
 		if (if_num(num_list[total]) == 0)
+		{
+			free_arg(num_list);
 			error_exit();
+		}
 	}
 	arr = (int *)malloc((total) * sizeof(int));
 	if (!arr)
@@ -77,10 +103,7 @@ int	check_arg(char *argv)
 	i = -1;
 	while (++i < total)
 		arr[i] = ft_atoi(num_list[i]);
-	i = -1;
-	while (++i < total)
-		free(num_list[i]);
-	free(num_list);
+	free_arg(num_list);
 	if (if_repetive_num(arr, total))
 		error_exit();
 	return (total);

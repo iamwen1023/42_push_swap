@@ -1,3 +1,5 @@
 .DS_Store
 push_swap_tester/
 checker_Mac
+.vscode/
+checker_linux
