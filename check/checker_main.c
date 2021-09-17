@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:38:40 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/17 18:11:26 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/17 18:27:53 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ void	free_all(char *line, t_listd *arr, t_listd *arr_b)
 	error_exit();
 }
 
-t_listd	*parse_func(int argc, char **argv, t_listd *arr)
+int	parse_func(int argc, char **argv, t_listd **arr)
 {
 	if (ft_strcmp(argv[1], "") == 0)
 		error_exit();
 	if (argv[1] && argc == 2)
-		arr = parse_arg(argv[1]);
+		(*arr) = parse_arg(argv[1]);
 	else
-		arr = parse_lst(argc, argv);
-	return (arr);
+		(*arr) = parse_lst(argc, argv);
+	if (*arr)
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char**argv)
@@ -83,8 +85,7 @@ int	main(int argc, char**argv)
 	if (check_error(argc, argv) == 1)
 		error_exit();
 	arr = 0;
-	arr = parse_func(argc, argv, arr);
-	if (arr == 0)
+	if (parse_func(argc, argv, &arr) == 0)
 		return (0);
 	while (get_next_line(0, &line) > 0)
 	{
