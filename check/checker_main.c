@@ -60,15 +60,17 @@ void	free_all(char *line, t_listd *arr, t_listd *arr_b)
 	error_exit();
 }
 
-t_listd	*parse_func(int argc, char **argv, t_listd *arr)
+int	parse_func(int argc, char **argv, t_listd **arr)
 {
 	if (ft_strcmp(argv[1], "") == 0)
 		error_exit();
 	if (argv[1] && argc == 2)
-		arr = parse_arg(argv[1]);
+		(*arr) = parse_arg(argv[1]);
 	else
-		arr = parse_lst(argc, argv);
-	return (arr);
+		(*arr) = parse_lst(argc, argv);
+	if (*arr)
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char**argv)
@@ -82,8 +84,8 @@ int	main(int argc, char**argv)
 		return (0);
 	if (check_error(argc, argv) == 1)
 		error_exit();
-	arr = parse_func(argc, argv, arr);
-	if (arr == 0)
+	arr = 0;
+	if (parse_func(argc, argv, &arr) == 0)
 		return (0);
 	while (get_next_line(0, &line) > 0)
 	{
