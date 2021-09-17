@@ -14,7 +14,7 @@ ifeq (${DEBUG}, 1)
 	FLAGS	+= -g
 endif
 		
-all: $(NAME_P)  
+all: $(NAME_P) $(NAME_C)
 
 $(LIB.A):
 		make -C $(LIB)

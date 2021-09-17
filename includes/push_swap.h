@@ -64,7 +64,6 @@ void	radix_sort(t_listd **arr, int size);
 
 int		check_operation_2(char *line, t_listd **arr, t_listd **arr_b);
 int		check_operation(char *line, t_listd **arr, t_listd **arr_b);
-
 void	swap_a_np(t_listd **lst);
 void	swap_b_np(t_listd **lst);
 void	push_a_np(t_listd **lst_a, t_listd **lst_b);
