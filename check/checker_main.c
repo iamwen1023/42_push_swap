@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:38:40 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/14 13:37:41 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/17 18:11:26 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char**argv)
 		return (0);
 	if (check_error(argc, argv) == 1)
 		error_exit();
+	arr = 0;
 	arr = parse_func(argc, argv, arr);
 	if (arr == 0)
 		return (0);
