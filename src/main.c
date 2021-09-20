@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:51:20 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/14 14:49:15 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/20 12:16:30 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_arr(t_listd *arr)
 		current = arr;
 		arr = arr->next;
 		free(current);
+		current = NULL;
 	}
 }
 

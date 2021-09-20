@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wlo <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 16:20:18 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 16:20:21 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/20 15:10:23 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ void	new_buffer(char *s)
 int	read_file(char **arr, int fd, char *buffer)
 {
 	int	ret;
+	int	roop;
 
 	ret = 1;
+	roop = 0;
 	while (ft_strchr_gnl(*arr, '\n') == 0)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
@@ -95,6 +97,9 @@ int	read_file(char **arr, int fd, char *buffer)
 			*arr = ft_substr_gnl(buffer, 0, (size_t)ret);
 		else
 			*arr = ft_strjoin_gnl(*arr, buffer);
+		roop++;
+		if (roop == 100)
+			return (0);
 	}
 	return (ret);
 }

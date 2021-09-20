@@ -6,7 +6,7 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:34:59 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:51:51 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/20 15:07:20 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
 		swap_a_np(arr);
 		swap_b_np(arr_b);
 	}
+	else if (!ft_strcmp(line, ""))
+		return (0);
 	else
 		return (1);
 	return (0);

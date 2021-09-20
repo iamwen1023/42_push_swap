@@ -6,17 +6,11 @@
 /*   By: wlo <wlo@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/24 12:38:04 by wlo               #+#    #+#             */
-/*   Updated: 2021/09/10 17:10:02 by wlo              ###   ########.fr       */
+/*   Updated: 2021/09/20 10:17:19 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	error(void)
-{
-	ft_putstr_fd("Error\n", 2);
-	exit(1);
-}
 
 int	if_space(char c)
 {
@@ -49,9 +43,9 @@ int	ft_atoi(const char *str)
 		result = result * 10 + *str - '0';
 		str++;
 		if (sign < 0 && result > 2147483648)
-			error();
+			return (0);
 		if (sign > 0 && result > 2147483647)
-			error();
+			return (-1);
 	}
 	return (((int)result) * sign);
 }
