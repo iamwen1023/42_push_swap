@@ -9,7 +9,6 @@
 /*   Updated: 2021/09/10 17:51:41 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "push_swap.h"
 
 void	swap_a_np(t_listd **lst)
@@ -70,7 +69,7 @@ void	push_b_np(t_listd **lst_a, t_listd **lst_b)
 
 int     check_operation(char *line, t_listd **arr, t_listd **arr_b)
 {
-        if (!line)
+	if (!line)
                 error_exit();
         if (!ft_strcmp(line, "sa"))
                 swap_a_np(arr);

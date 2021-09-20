@@ -81,8 +81,10 @@ void	new_buffer(char *s)
 int	read_file(char **arr, int fd, char *buffer)
 {
 	int	ret;
+	int 	roop;
 
 	ret = 1;
+	roop = 0;
 	while (ft_strchr_gnl(*arr, '\n') == 0)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
@@ -95,6 +97,9 @@ int	read_file(char **arr, int fd, char *buffer)
 			*arr = ft_substr_gnl(buffer, 0, (size_t)ret);
 		else
 			*arr = ft_strjoin_gnl(*arr, buffer);
+		roop++;
+		if (roop == 100)
+			return (0);
 	}
 	return (ret);
 }

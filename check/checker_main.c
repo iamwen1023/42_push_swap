@@ -9,7 +9,7 @@
 /*   Updated: 2021/09/14 13:37:41 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "push_swap.h"
 
 void	free_arr(t_listd *arr, t_listd *arr_b)
@@ -57,17 +57,24 @@ void	read_input(t_listd **arr, t_listd **arr_b)
 	char	*line;
 	int	ret;
 
-	ret = get_next_line(0, &line);
+	//ret = get_next_line(0, &line);
+	ret = 1;
 	while (ret > 0)
         {
+		ret = get_next_line(0, &line);
                 if (check_operation(line, arr, arr_b) == 1)
                         free_all(line, *arr, *arr_b);
                 free(line);
 		line = NULL;
-		ret = get_next_line(0, &line);
+		//ret = get_next_line(0, &line);
+		printf("valeur de ret = %d\n", ret);
         }
 	if (ret == 0) 
-        	free(line);
+	{
+		//if (check_operation(line, arr, arr_b) == 1)
+		//	error_exit();
+		free(line);
+	}
 	else
 	{
 		free_arr(*arr, *arr_b);

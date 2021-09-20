@@ -9,7 +9,7 @@
 /*   Updated: 2021/09/10 17:51:51 by wlo              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "push_swap.h"
 
 void	rotate_a_np(t_listd **lst)
@@ -104,6 +104,11 @@ int	check_operation_2(char *line, t_listd **arr, t_listd **arr_b)
 	{
 		swap_a_np(arr);
 		swap_b_np(arr_b);
+	}
+	else if (!ft_strcmp(line, ""))
+	{
+		printf("ici");
+		return (0);
 	}
 	else
 		return (1);
