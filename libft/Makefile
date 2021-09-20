@@ -13,7 +13,7 @@ BONUS_SRCS	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c \
 INCS		= libft.h
 OBJS        = $(SRCS:.c=.o)
 OBJS_BONUS	= $(BONUS_SRCS:.c=.o)
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -fPIC
 NAME		= libft.a
 CC		= cc -c
 RM		= rm -f
