@@ -59,10 +59,13 @@ void	read_input(t_listd	**arr, t_listd	**arr_b)
 	char	*line;
 	int		ret;
 
+	line = 0;
 	ret = 1;
 	while (ret > 0)
 	{
 		ret = get_next_line(0, &line);
+		if (ret < 0)
+			break ;
 		if (check_operation(line, arr, arr_b) == 1)
 			free_all(line, *arr, *arr_b);
 		free(line);
@@ -72,7 +75,7 @@ void	read_input(t_listd	**arr, t_listd	**arr_b)
 		free(line);
 	else
 	{
-		free_arr(*arr, *arr_b);
+		free_all(line, *arr, *arr_b);
 		error_exit();
 	}
 }
