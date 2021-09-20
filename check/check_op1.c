@@ -67,3 +67,25 @@ void	push_b_np(t_listd **lst_a, t_listd **lst_b)
 	ft_lstadd_front_doubly(lst_b, temp);
 	ft_lstdel_doubly(lst_a, *lst_a);
 }
+
+int     check_operation(char *line, t_listd **arr, t_listd **arr_b)
+{
+        if (!line)
+                error_exit();
+        if (!ft_strcmp(line, "sa"))
+                swap_a_np(arr);
+        else if (!ft_strcmp(line, "sb"))
+                swap_b_np(arr_b);
+        else if (!ft_strcmp(line, "pa"))
+                push_a_np(arr, arr_b);
+        else if (!ft_strcmp(line, "pb"))
+                push_b_np(arr, arr_b);
+        else if (!ft_strcmp(line, "ra"))
+                rotate_a_np(arr);
+        else if (!ft_strcmp(line, "rb"))
+                rotate_b_np(arr_b);
+        else
+                return (check_operation_2(line, arr, arr_b));
+        return (0);
+}
+

@@ -12,27 +12,6 @@
 
 #include "push_swap.h"
 
-int	check_operation(char *line, t_listd **arr, t_listd **arr_b)
-{
-	if (!line)
-		error_exit();
-	if (!ft_strcmp(line, "sa"))
-		swap_a_np(arr);
-	else if (!ft_strcmp(line, "sb"))
-		swap_b_np(arr_b);
-	else if (!ft_strcmp(line, "pa"))
-		push_a_np(arr, arr_b);
-	else if (!ft_strcmp(line, "pb"))
-		push_b_np(arr, arr_b);
-	else if (!ft_strcmp(line, "ra"))
-		rotate_a_np(arr);
-	else if (!ft_strcmp(line, "rb"))
-		rotate_b_np(arr_b);
-	else
-		return (check_operation_2(line, arr, arr_b));
-	return (0);
-}
-
 void	free_arr(t_listd *arr, t_listd *arr_b)
 {
 	t_listd	*current;
@@ -73,10 +52,32 @@ int	parse_func(int argc, char **argv, t_listd **arr)
 	return (0);
 }
 
+void	read_input(t_listd **arr, t_listd **arr_b)
+{
+	char	*line;
+	int	ret;
+
+	ret = get_next_line(0, &line);
+	while (ret > 0)
+        {
+                if (check_operation(line, arr, arr_b) == 1)
+                        free_all(line, *arr, *arr_b);
+                free(line);
+		line = NULL;
+		ret = get_next_line(0, &line);
+        }
+	if (ret == 0) 
+        	free(line);
+	else
+	{
+		free_arr(*arr, *arr_b);
+		error_exit();
+	}
+}
+
 int	main(int argc, char**argv)
 {
 	t_listd	*arr;
-	char	*line;
 	t_listd	*arr_b;
 
 	arr_b = 0;
@@ -87,13 +88,7 @@ int	main(int argc, char**argv)
 	arr = 0;
 	if (parse_func(argc, argv, &arr) == 0)
 		return (0);
-	while (get_next_line(0, &line) > 0)
-	{
-		if (check_operation(line, &arr, &arr_b) == 1)
-			free_all(line, arr, arr_b);
-		free(line);
-	}
-	free(line);
+	read_input(&arr, &arr_b);
 	if (confrim_sort(arr) == 1 && !arr_b)
 		write(1, "OK\n", 3);
 	else
